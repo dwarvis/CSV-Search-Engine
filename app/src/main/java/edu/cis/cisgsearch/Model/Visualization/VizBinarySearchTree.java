@@ -42,7 +42,8 @@ public class VizBinarySearchTree {
          **
          **  TODO 3: Search through the tree for the value. Return the Node with the correct value.
          **           //complete the searchHelper function and use it here.
-         **           //Once you complete this you MUST test your solution by running the app.
+         **           //Once you complete this make sure to test your solution by running the app.
+         **           //See video on website for expected behavior.
          **
          **/
 

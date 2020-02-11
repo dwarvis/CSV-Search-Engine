@@ -35,7 +35,7 @@ public class VizTreeNode
 
         /**
          **
-         **  TODO 7: Find and update the height for this node. It should be one greate than the
+         **  TODO 7: Find and update the height for this node. It should be one greater than the
          *           max between the heights of its left and right nodes.
          **
          **/
