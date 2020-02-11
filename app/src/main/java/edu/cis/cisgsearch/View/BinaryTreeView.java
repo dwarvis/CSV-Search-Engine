@@ -9,12 +9,13 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import edu.cis.cisgsearch.Model.TConst;
 import edu.cis.cisgsearch.Model.Visualization.VizBinarySearchTree;
 
 public class BinaryTreeView extends View
 {
 
-    public static final int TREE_SIZE = 20;
+
     private VizBinarySearchTree tree = null;
     private ArrayList<Integer> searchSequence = null;
     private int searchPosition;
@@ -29,12 +30,12 @@ public class BinaryTreeView extends View
     public void initialize()
     {
         tree = new VizBinarySearchTree();
-        for (int value : generateRandomSequence(TREE_SIZE))
+        for (int value : generateRandomSequence(TConst.TREE_SIZE))
         {
             tree.insert(value);
         }
         tree.positionNodes(this.getWidth());
-        searchSequence = generateRandomSequence(TREE_SIZE);
+        searchSequence = generateRandomSequence(TConst.TREE_SIZE);
         searchPosition = 0;
         updateMessage();
         invalidate();
