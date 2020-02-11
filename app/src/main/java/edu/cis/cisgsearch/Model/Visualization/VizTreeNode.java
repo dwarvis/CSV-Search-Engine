@@ -50,7 +50,7 @@ public class VizTreeNode
 
         /**
          **
-         **  TODO 10: Rebalance the tree depending on the balance found and valueToInsert.
+         **  TODO 9: Rebalance the tree depending on the balance found and valueToInsert.
          *            //Look at writeup
          **
          **/
