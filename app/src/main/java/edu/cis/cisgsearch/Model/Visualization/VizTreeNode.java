@@ -4,10 +4,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import edu.cis.cisgsearch.Model.TConst;
+
 public class VizTreeNode
 {
-    private static final int SIZE = 60;
-    private static final int MARGIN = 20;
+
     private int value, height;
     protected VizTreeNode left, right;
     private boolean showValue;
@@ -140,11 +141,11 @@ public class VizTreeNode
 
         if(left != null)
         {
-            left.positionSelf(x0, right == null ? x1 - 2 * MARGIN : x, y + SIZE + MARGIN);
+            left.positionSelf(x0, right == null ? x1 - 2 * TConst.VIZ_REC_MARGIN : x, y + TConst.VIZ_REC_SIZE + TConst.VIZ_REC_MARGIN);
         }
         if (right != null)
         {
-            right.positionSelf(left == null ? x0 + 2 * MARGIN : x, x1, y + SIZE + MARGIN);
+            right.positionSelf(left == null ? x0 + 2 * TConst.VIZ_REC_MARGIN : x, x1, y + TConst.VIZ_REC_SIZE + TConst.VIZ_REC_MARGIN);
         }
     }
 
@@ -155,28 +156,28 @@ public class VizTreeNode
         linePaint.setStrokeWidth(3);
         linePaint.setColor(Color.GRAY);
         if (left != null)
-            c.drawLine(x, y + SIZE/2, left.x, left.y + SIZE/2, linePaint);
+            c.drawLine(x, y + TConst.VIZ_REC_SIZE/2, left.x, left.y + TConst.VIZ_REC_SIZE/2, linePaint);
         if (right != null)
-            c.drawLine(x, y + SIZE/2, right.x, right.y + SIZE/2, linePaint);
+            c.drawLine(x, y + TConst.VIZ_REC_SIZE/2, right.x, right.y + TConst.VIZ_REC_SIZE/2, linePaint);
 
         Paint fillPaint = new Paint();
         fillPaint.setStyle(Paint.Style.FILL);
         fillPaint.setColor(color);
-        c.drawRect(x-SIZE/2, y, x+SIZE/2, y+SIZE, fillPaint);
+        c.drawRect(x- TConst.VIZ_REC_SIZE/2, y, x+ TConst.VIZ_REC_SIZE/2, y+ TConst.VIZ_REC_SIZE, fillPaint);
 
         Paint paint = new Paint();
         paint.setColor(Color.BLACK);
-        paint.setTextSize(SIZE * 2/3);
+        paint.setTextSize(TConst.VIZ_REC_SIZE * 2/3);
         paint.setTextAlign(Paint.Align.CENTER);
-        c.drawText(showValue ? String.valueOf(value) : "?", x, y + SIZE * 3/4, paint);
+        c.drawText(showValue ? String.valueOf(value) : "?", x, y + TConst.VIZ_REC_SIZE * 3/4, paint);
 
         if (height > 0)
         {
             Paint heightPaint = new Paint();
             heightPaint.setColor(Color.MAGENTA);
-            heightPaint.setTextSize(SIZE * 2 / 3);
+            heightPaint.setTextSize(TConst.VIZ_REC_SIZE * 2 / 3);
             heightPaint.setTextAlign(Paint.Align.LEFT);
-            c.drawText(String.valueOf(height), x + SIZE / 2 + 10, y + SIZE * 3 / 4, heightPaint);
+            c.drawText(String.valueOf(height), x + TConst.VIZ_REC_SIZE / 2 + 10, y + TConst.VIZ_REC_SIZE * 3 / 4, heightPaint);
         }
 
         if (left != null)
@@ -188,7 +189,7 @@ public class VizTreeNode
     public int click(float clickX, float clickY, int target)
     {
         int hit = -1;
-        if (Math.abs(x - clickX) <= (SIZE / 2) && y <= clickY && clickY <= y + SIZE)
+        if (Math.abs(x - clickX) <= (TConst.VIZ_REC_SIZE / 2) && y <= clickY && clickY <= y + TConst.VIZ_REC_SIZE)
         {
             if (!showValue)
             {
