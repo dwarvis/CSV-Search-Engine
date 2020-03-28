@@ -32,6 +32,23 @@ public class VizTreeNode
          **  TODO 2 : Use recursion to insert the value.
          **
          **/
+        VizTreeNode temp = new VizTreeNode(valueToInsert);
+
+        if (valueToInsert < node.getValue()) //smaller
+        {
+            //termination condition and recursion
+            node.left = (node.left == null) ? temp : insert(node.left, valueToInsert);
+        }
+        else if (valueToInsert > node.getValue()) //larger
+        {
+            node.right = (node.right == null) ? temp : insert(node.right, valueToInsert);
+        }
+        else //equal
+        {
+            //do nothing
+        }
+
+
 
         /**
          **
@@ -39,6 +56,7 @@ public class VizTreeNode
          *           max between the heights of its left and right nodes.
          **
          **/
+
 
 
         /**
@@ -105,7 +123,11 @@ public class VizTreeNode
      **/
     private int max (int left, int right)
     {
-        return 0;
+        if (left >= right)
+        {
+            return left;
+        }
+        return right;
     }
 
     /**
@@ -115,7 +137,7 @@ public class VizTreeNode
      **/
     private int getHeight(VizTreeNode node)
     {
-        return 0;
+        return height;
     }
 
     /**
@@ -126,7 +148,13 @@ public class VizTreeNode
      **/
     private int getBalance(VizTreeNode node)
     {
-        return 0;
+        if (node.right == null || node.left == null)
+        {
+            return 0;
+        }
+        int h1 = getHeight(node.right);
+        int h2 = getHeight(node.left);
+        return (h1 > h2) ? h1-h2 : h2-h1;
     }
 
     public int getValue()

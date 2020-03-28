@@ -19,6 +19,14 @@ public class VizBinarySearchTree {
          **           // If empty, just set the root to be a new VizTreeNode.
          **
          **/
+        if (root == null)
+        {
+            root = new VizTreeNode(value);
+        }
+        if (root != null)
+        {
+            root = root.insert(root, value);
+        }
     }
 
     public void positionNodes(int width)
@@ -46,8 +54,7 @@ public class VizBinarySearchTree {
          **           //See video on website for expected behavior.
          **
          **/
-
-        return null;
+        return searchHelper(root, value);
     }
 
     /**
@@ -57,7 +64,19 @@ public class VizBinarySearchTree {
      **/
     private VizTreeNode searchHelper(VizTreeNode root, int value)
     {
-        return null;
+        if (root == null || root.getValue() == value)
+        {
+            return root;
+        }
+        if (root.getValue() > value)
+        {
+            return searchHelper(root.left, value);
+        }
+        if (root.getValue() < value)
+        {
+            return searchHelper(root.right, value);
+        }
+        return root;
     }
 
     public void invalidateNode(int targetValue)
