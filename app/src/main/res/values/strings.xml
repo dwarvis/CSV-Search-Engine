@@ -2,4 +2,6 @@
     <string name="app_name">CIS GSearch</string>
     <string name="start">Start</string>
     <string name="title_activity_sec">SecActivity</string>
+    <string name="goBack">Go Back</string>
+    <string name="textview">TextView</string>
 </resources>

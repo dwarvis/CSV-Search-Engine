@@ -9,17 +9,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.TextView;
 
 import edu.cis.cisgsearch.R;
 
 public class SecActivity extends AppCompatActivity
 {
+    TextView showInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sec);
+
+        showInfo = findViewById(R.id.textView);
+
+        String nameFromOtherView = getIntent().getStringExtra("name");
+        showInfo.setText(nameFromOtherView);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
