@@ -59,6 +59,17 @@ public class VizBinarySearchTree {
         return searchHelper(root, value);
     }
 
+    public TARestProfile find(int value)
+    {
+        return search(value).getProf();
+
+    }
+
+    public VizTreeNode searchPub(int value)
+    {
+        return searchHelper(root, value);
+    }
+
     /**
      **
      **  Recursively searches through the Tree, looking for the value.

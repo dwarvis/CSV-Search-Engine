@@ -11,9 +11,12 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import edu.cis.cisgsearch.Model.GoogleSearch.Util;
 import edu.cis.cisgsearch.R;
+import edu.cis.cisgsearch.View.BinaryTreeView;
 
 public class SecActivity extends AppCompatActivity
 {
@@ -43,6 +46,7 @@ public class SecActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+
     }
 
     public void goBackToMain(View v)
@@ -58,6 +62,18 @@ public class SecActivity extends AppCompatActivity
         //send over the results
         //"You create a new activity that lets the user search through the data that you have added to the binary tree."
         intent.putExtra("name", nameFromUser);
+        intent.putExtra("type", "search");
+        startActivity(intent);
+    }
+
+    public void goToDisplayScreenFind(View v)
+    {
+        //change this
+        Intent intent = new Intent(getBaseContext(), SecondaryActivity.class);
+        //send over the results
+        //"You create a new activity that lets the user search through the data that you have added to the binary tree."
+        intent.putExtra("name", nameFromUser);
+        intent.putExtra("type", "find");
         startActivity(intent);
     }
 

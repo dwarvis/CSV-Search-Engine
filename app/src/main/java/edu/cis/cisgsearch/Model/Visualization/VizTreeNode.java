@@ -193,6 +193,11 @@ public class VizTreeNode
         return value;
     }
 
+    public TARestProfile getProf()
+    {
+        return prof;
+    }
+
     public void positionSelf(int x0, int x1, int y)
     {
         this.y = y;

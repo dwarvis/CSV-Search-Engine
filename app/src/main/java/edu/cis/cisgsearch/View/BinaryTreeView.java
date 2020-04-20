@@ -42,19 +42,22 @@ public class BinaryTreeView extends View
         invalidate();
     }
 
-    public void load(ArrayList<TARestProfile> TARPList)
+    public VizBinarySearchTree load(ArrayList<TARestProfile> TARPList)
     {
         tree = new VizBinarySearchTree();
+        ArrayList<Integer> temp = new ArrayList<>();
         for (TARestProfile t : TARPList)
         {
             int value = toASCII(t.getName());
+            temp.add(value);
             tree.insert(value, t);
         }
-        tree.positionNodes(this.getWidth());
-        searchSequence = generateRandomSequence(TConst.TREE_SIZE);
+        searchSequence = temp;
         searchPosition = 0;
         updateMessage();
         invalidate();
+
+        return tree;
     }
 
     private ArrayList<Integer> generateRandomSequence(int size)

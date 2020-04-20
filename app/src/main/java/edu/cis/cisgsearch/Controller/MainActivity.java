@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
 
         layout.addView(treeView);
+
+//        System.out.println(Util.readCSV(getBaseContext()).get(0).getName());
     }
 
     public void goToNextScreen(View v)

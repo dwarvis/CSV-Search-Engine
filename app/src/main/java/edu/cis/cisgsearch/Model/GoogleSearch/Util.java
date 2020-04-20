@@ -18,27 +18,28 @@ public class Util
 
     public static ArrayList<TARestProfile> readCSV(Context mainScreen)
     {
-        ArrayList<TARestProfile> tempList = null;
+        ArrayList<TARestProfile> tempList = new ArrayList<>();
+        Iterable<CSVRecord> records = null;
 
         try
         {
             InputStream data = mainScreen.getAssets().open("TA_restaurants_curated.csv");
 //            Scanner sc = new Scanner(data);
 //            System.out.println("first line" + sc.nextLine());
-            Iterable<CSVRecord> records;
+
             records = CSVFormat.EXCEL.withHeader().parse(new InputStreamReader(data));
-            for (CSVRecord rec : records)
-            {
-                TARestProfile temp = new TARestProfile(rec.get(TConst.name), rec.get(TConst.city),
-                        rec.get(TConst.cuisine), rec.get(TConst.rank), rec.get(TConst.rating),
-                        rec.get(TConst.priceRange), rec.get(TConst.reviewNumber),
-                        rec.get(TConst.reviews), rec.get(TConst.url), rec.get(TConst.id));
-                tempList.add(temp);
-            }
         }
         catch (Exception e)
         {
-
+            System.out.println(e);
+        }
+        for (CSVRecord rec : records)
+        {
+            TARestProfile temp = new TARestProfile(rec.get(TConst.name), rec.get(TConst.city),
+                    rec.get(TConst.cuisine), rec.get(TConst.rank), rec.get(TConst.rating),
+                    rec.get(TConst.priceRange), rec.get(TConst.reviewNumber),
+                    rec.get(TConst.reviews), rec.get(TConst.url), rec.get(TConst.id));
+            tempList.add(temp);
         }
         return tempList;
     }
