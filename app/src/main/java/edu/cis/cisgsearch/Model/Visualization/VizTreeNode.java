@@ -4,6 +4,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import javax.xml.validation.Validator;
+
+import edu.cis.cisgsearch.Model.GoogleSearch.TARestProfile;
 import edu.cis.cisgsearch.Model.TConst;
 
 public class VizTreeNode
@@ -13,6 +16,7 @@ public class VizTreeNode
     protected VizTreeNode left, right;
     private boolean showValue;
     private int x, y;
+    private TARestProfile prof;
     private int color = Color.rgb(150, 150, 250);
 
     public VizTreeNode(int value)
@@ -25,7 +29,7 @@ public class VizTreeNode
     }
 
 
-    public VizTreeNode insert(VizTreeNode node, int valueToInsert)
+    public VizTreeNode insert(VizTreeNode node, int valueToInsert, TARestProfile info)
     {
         /**
          **
@@ -37,11 +41,11 @@ public class VizTreeNode
         if (valueToInsert < node.getValue()) //smaller
         {
             //termination condition and recursion
-            node.left = (node.left == null) ? temp : insert(node.left, valueToInsert);
+            node.left = (node.left == null) ? temp : insert(node.left, valueToInsert, info);
         }
         else if (valueToInsert > node.getValue()) //larger
         {
-            node.right = (node.right == null) ? temp : insert(node.right, valueToInsert);
+            node.right = (node.right == null) ? temp : insert(node.right, valueToInsert, info);
         }
         else //equal
         {
@@ -56,6 +60,7 @@ public class VizTreeNode
          *           max between the heights of its left and right nodes.
          **
          **/
+         node.height = max(getHeight(node.left), getHeight(node.right)) + 1;
 
 
 
@@ -64,7 +69,7 @@ public class VizTreeNode
          **  TODO 8: Find the balance of this node and store it in a variable.
          **
          **/
-
+         int balance = getHeight(node.left) - getHeight(node.right);
 
         /**
          **
@@ -72,6 +77,24 @@ public class VizTreeNode
          *            //Look at writeup
          **
          **/
+        if (balance > 1 && valueToInsert < node.left.getValue())
+        {
+            return rightRotate(node);
+        }
+        if (balance < -1 && valueToInsert > node.right.getValue())
+        {
+            return leftRotate(node);
+        }
+        if (balance > 1 && valueToInsert > node.left.getValue())
+        {
+            node.left = leftRotate(node.left);
+            return rightRotate(node);
+        }
+        if (balance < -1 && valueToInsert < node.right.getValue())
+        {
+            node.right = rightRotate(node.right);
+            return leftRotate(node);
+        }
 
 
         //If no cases match imbalance, then just return the original node.
@@ -137,7 +160,15 @@ public class VizTreeNode
      **/
     private int getHeight(VizTreeNode node)
     {
-        return height;
+        if (node == null)
+        {
+            return 0;
+        }
+        if (node.left == null && node.right == null)
+        {
+            return 1;
+        }
+        return node.height;
     }
 
     /**

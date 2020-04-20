@@ -2,18 +2,24 @@ package edu.cis.cisgsearch.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import edu.cis.cisgsearch.Model.GoogleSearch.TARestProfile;
+import edu.cis.cisgsearch.Model.GoogleSearch.Util;
 import edu.cis.cisgsearch.R;
 import edu.cis.cisgsearch.View.BinaryTreeView;
 
 public class MainActivity extends AppCompatActivity {
 
     BinaryTreeView treeView = null;
+    private ArrayList<TARestProfile> TARPList;
 
     /**
      * is called when the app is opened,
@@ -35,8 +41,13 @@ public class MainActivity extends AppCompatActivity {
         treeView.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
 
-
         layout.addView(treeView);
+    }
+
+    public void goToNextScreen(View v)
+    {
+        Intent intent = new Intent(getBaseContext(), SecondaryActivity.class);
+        startActivity(intent);
     }
 
     /**

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import edu.cis.cisgsearch.Model.GoogleSearch.TARestProfile;
 import edu.cis.cisgsearch.Model.TConst;
 import edu.cis.cisgsearch.Model.Visualization.VizBinarySearchTree;
 
@@ -32,7 +33,22 @@ public class BinaryTreeView extends View
         tree = new VizBinarySearchTree();
         for (int value : generateRandomSequence(TConst.TREE_SIZE))
         {
-            tree.insert(value);
+            tree.insert(value, null);
+        }
+        tree.positionNodes(this.getWidth());
+        searchSequence = generateRandomSequence(TConst.TREE_SIZE);
+        searchPosition = 0;
+        updateMessage();
+        invalidate();
+    }
+
+    public void load(ArrayList<TARestProfile> TARPList)
+    {
+        tree = new VizBinarySearchTree();
+        for (TARestProfile t : TARPList)
+        {
+            int value = toASCII(t.getName());
+            tree.insert(value, t);
         }
         tree.positionNodes(this.getWidth());
         searchSequence = generateRandomSequence(TConst.TREE_SIZE);
@@ -68,6 +84,19 @@ public class BinaryTreeView extends View
             textView.setText("Looking for node " + searchSequence.get(searchPosition));
         else
             textView.setText("Done!");
+    }
+
+    //http://easyonlineconverter.com/codes/java_codes/convert-strin-to-ASCII-value-in-java.html
+    public static int toASCII (String s)
+    {
+        String temp = "";
+        int nameLength = s.length();
+        for(int i = 0; i < nameLength ; i++){
+            char character = s.charAt(i);
+            int ascii = (int) character;
+            temp = temp + ascii;
+        }
+        return Integer.parseInt(temp);
     }
 
     /**

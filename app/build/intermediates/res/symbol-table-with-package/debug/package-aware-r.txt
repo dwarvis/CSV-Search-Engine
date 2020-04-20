@@ -1067,6 +1067,7 @@ id mtrl_internal_children_alpha_tag
 id multiply
 id navigation_header_container
 id never
+id nextScreen
 id none
 id normal
 id notification_background
@@ -1102,6 +1103,7 @@ id search_mag_icon
 id search_plate
 id search_src_text
 id search_voice_btn
+id secondaryLayout
 id select_dialog_listview
 id selected
 id shortcut
@@ -1203,6 +1205,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
+layout activity_secondary
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar
@@ -1285,6 +1288,7 @@ string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
 string search_menu_title
+string start
 string status_bar_notification_info_overflow
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light

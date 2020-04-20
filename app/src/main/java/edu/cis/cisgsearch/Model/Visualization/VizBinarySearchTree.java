@@ -2,6 +2,8 @@ package edu.cis.cisgsearch.Model.Visualization;
 
 import android.graphics.Canvas;
 
+import edu.cis.cisgsearch.Model.GoogleSearch.TARestProfile;
+
 public class VizBinarySearchTree {
     private VizTreeNode root = null;
 
@@ -9,7 +11,7 @@ public class VizBinarySearchTree {
     {
     }
 
-    public void insert(int value)
+    public void insert(int value, TARestProfile info)
     {
 
         /**
@@ -25,7 +27,7 @@ public class VizBinarySearchTree {
         }
         if (root != null)
         {
-            root = root.insert(root, value);
+            root = root.insert(root, value, info);
         }
     }
 
