@@ -10,6 +10,7 @@ import android.widget.TextView;
 import edu.cis.cisgsearch.Model.GoogleSearch.TARestProfile;
 import edu.cis.cisgsearch.Model.GoogleSearch.Util;
 import edu.cis.cisgsearch.Model.Visualization.VizBinarySearchTree;
+import edu.cis.cisgsearch.Model.Visualization.VizTreeNode;
 import edu.cis.cisgsearch.R;
 import edu.cis.cisgsearch.View.BinaryTreeView;
 
@@ -36,32 +37,43 @@ public class SecondaryActivity extends AppCompatActivity {
 
         VizBinarySearchTree tree = treeView.load(Util.readCSV(getBaseContext()));
 
+
         if (type.equals("search"))
         {
-             displayText = tree.searchPub(BinaryTreeView.toASCII(nameFromOtherView)).getProf().getName();
+            VizTreeNode tempNode = tree.searchPub(BinaryTreeView.toASCII(nameFromOtherView));
+            if (tempNode != null)
+            {
+                displayText = tempNode.getProf().getName();
+            }
+            else
+            {
+                displayText = "Couldn't find restaurant name.";
+            }
         }
 
         if (type.equals("find"))
         {
             TARestProfile temp = tree.find(BinaryTreeView.toASCII(nameFromOtherView));
-            displayText = temp.getName() + ", " +
-                    temp.getCity() + ", " +
-                    temp.getCustyle() + ", " +
-                    temp.getRanking() + ", " +
-                    temp.getRating() + ", " +
-                    temp.getpRange() + ", " +
-                    temp.getNOR() + ", " +
-                    temp.getReviews() + ", " +
-                    temp.getUrl() + ", " +
-                    temp.getId();
-
+            if (temp != null)
+            {
+                displayText = temp.getName() + ", " +
+                        temp.getCity() + ", " +
+                        temp.getCustyle() + ", " +
+                        temp.getRanking() + ", " +
+                        temp.getRating() + ", " +
+                        temp.getpRange() + ", " +
+                        temp.getNOR() + ", " +
+                        temp.getReviews() + ", " +
+                        temp.getUrl() + ", " +
+                        temp.getId();
+            }
+            else
+            {
+                displayText = "Couldn't find restaurant name.";
+            }
         }
 
         nameTextField.setText(displayText);
-
-
-
-
     }
 
     public void goBackToSearch(View v)

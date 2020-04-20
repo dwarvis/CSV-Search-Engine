@@ -18,7 +18,7 @@ public class BinaryTreeView extends View
 
 
     private VizBinarySearchTree tree = null;
-    private ArrayList<Integer> searchSequence = null;
+    private ArrayList<Double> searchSequence = null;
     private int searchPosition;
     private TextView textView;
 
@@ -31,7 +31,7 @@ public class BinaryTreeView extends View
     public void initialize()
     {
         tree = new VizBinarySearchTree();
-        for (int value : generateRandomSequence(TConst.TREE_SIZE))
+        for (double value : generateRandomSequence(TConst.TREE_SIZE))
         {
             tree.insert(value, null);
         }
@@ -45,25 +45,24 @@ public class BinaryTreeView extends View
     public VizBinarySearchTree load(ArrayList<TARestProfile> TARPList)
     {
         tree = new VizBinarySearchTree();
-        ArrayList<Integer> temp = new ArrayList<>();
+        ArrayList<Double> temp = new ArrayList<>();
         for (TARestProfile t : TARPList)
         {
-            int value = toASCII(t.getName());
+            double value = toASCII(t.getName());
             temp.add(value);
             tree.insert(value, t);
         }
         searchSequence = temp;
         searchPosition = 0;
-        updateMessage();
         invalidate();
 
         return tree;
     }
 
-    private ArrayList<Integer> generateRandomSequence(int size)
+    private ArrayList<Double> generateRandomSequence(int size)
     {
-        ArrayList<Integer> numbers = new ArrayList<>(size);
-        for (int i = 0 ; i < size; i++)
+        ArrayList<Double> numbers = new ArrayList<>(size);
+        for (double i = 0 ; i < size; i++)
         {
             numbers.add(i+1);
         }
@@ -90,7 +89,7 @@ public class BinaryTreeView extends View
     }
 
     //http://easyonlineconverter.com/codes/java_codes/convert-strin-to-ASCII-value-in-java.html
-    public static int toASCII (String s)
+    public static double toASCII (String s)
     {
         String temp = "";
         int nameLength = s.length();
@@ -99,7 +98,7 @@ public class BinaryTreeView extends View
             int ascii = (int) character;
             temp = temp + ascii;
         }
-        return Integer.parseInt(temp);
+        return Double.parseDouble(temp);
     }
 
     /**
@@ -115,7 +114,7 @@ public class BinaryTreeView extends View
             switch(event.getAction())
             {
                 case MotionEvent.ACTION_DOWN:
-                    int targetValue = searchSequence.get(searchPosition);
+                    double targetValue = searchSequence.get(searchPosition);
                     int hitValue = tree.click(event.getX(), event.getY(), targetValue);
                     if (hitValue != -1)
                     {

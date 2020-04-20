@@ -12,14 +12,15 @@ import edu.cis.cisgsearch.Model.TConst;
 public class VizTreeNode
 {
 
-    private int value, height;
+    private double value;
+    private int height;
     protected VizTreeNode left, right;
     private boolean showValue;
     private int x, y;
     private TARestProfile prof;
     private int color = Color.rgb(150, 150, 250);
 
-    public VizTreeNode(int value)
+    public VizTreeNode(double value)
     {
         this.value = value;
         this.height = 0;
@@ -29,7 +30,7 @@ public class VizTreeNode
     }
 
 
-    public VizTreeNode insert(VizTreeNode node, int valueToInsert, TARestProfile info)
+    public VizTreeNode insert(VizTreeNode node, double valueToInsert, TARestProfile info)
     {
         /**
          **
@@ -188,7 +189,7 @@ public class VizTreeNode
         return (h1 > h2) ? h1-h2 : h2-h1;
     }
 
-    public int getValue()
+    public double getValue()
     {
         return value;
     }
@@ -250,7 +251,7 @@ public class VizTreeNode
             right.draw(c);
     }
 
-    public int click(float clickX, float clickY, int target)
+    public int click(float clickX, float clickY, double target)
     {
         int hit = -1;
         if (Math.abs(x - clickX) <= (TConst.VIZ_REC_SIZE / 2) && y <= clickY && clickY <= y + TConst.VIZ_REC_SIZE)
@@ -267,7 +268,7 @@ public class VizTreeNode
                 }
             }
             showValue = true;
-            hit = value;
+            hit = (int)value;
         }
         if (left != null && hit == -1)
             hit = left.click(clickX, clickY, target);

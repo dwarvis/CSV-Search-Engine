@@ -11,7 +11,7 @@ public class VizBinarySearchTree {
     {
     }
 
-    public void insert(int value, TARestProfile info)
+    public void insert(double value, TARestProfile info)
     {
 
         /**
@@ -41,11 +41,11 @@ public class VizBinarySearchTree {
         root.draw(c);
     }
 
-    public int click(float x, float y, int target) {
+    public int click(float x, float y, double target) {
         return root.click(x, y, target);
     }
 
-    private VizTreeNode search(int value)
+    private VizTreeNode search(double value)
     {
 
         /**
@@ -59,13 +59,13 @@ public class VizBinarySearchTree {
         return searchHelper(root, value);
     }
 
-    public TARestProfile find(int value)
+    public TARestProfile find(double value)
     {
         return search(value).getProf();
 
     }
 
-    public VizTreeNode searchPub(int value)
+    public VizTreeNode searchPub(double value)
     {
         return searchHelper(root, value);
     }
@@ -75,7 +75,7 @@ public class VizBinarySearchTree {
      **  Recursively searches through the Tree, looking for the value.
      **
      **/
-    private VizTreeNode searchHelper(VizTreeNode root, int value)
+    private VizTreeNode searchHelper(VizTreeNode root, double value)
     {
         if (root == null || root.getValue() == value)
         {
@@ -92,7 +92,7 @@ public class VizBinarySearchTree {
         return root;
     }
 
-    public void invalidateNode(int targetValue)
+    public void invalidateNode(double targetValue)
     {
         VizTreeNode target = search(targetValue);
         if (target != null)
