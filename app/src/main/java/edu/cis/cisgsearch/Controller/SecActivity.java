@@ -1,5 +1,6 @@
 package edu.cis.cisgsearch.Controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -9,13 +10,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import edu.cis.cisgsearch.R;
 
 public class SecActivity extends AppCompatActivity
 {
-    TextView showInfo;
+    EditText nameEditText;
+    String nameFromUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -23,10 +26,9 @@ public class SecActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sec);
 
-        showInfo = findViewById(R.id.textView);
+        nameEditText = findViewById(R.id.editText2);
 
-        String nameFromOtherView = getIntent().getStringExtra("name");
-        showInfo.setText(nameFromOtherView);
+        nameFromUser = nameEditText.getText().toString();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -41,6 +43,22 @@ public class SecActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    public void goBackToMain(View v)
+    {
+        Intent intent = new Intent(getBaseContext(), MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToDisplayScreen(View v)
+    {
+        //change this
+        Intent intent = new Intent(getBaseContext(), SecondaryActivity.class);
+        //send over the results
+        //"You create a new activity that lets the user search through the data that you have added to the binary tree."
+        intent.putExtra("name", nameFromUser);
+        startActivity(intent);
     }
 
 }

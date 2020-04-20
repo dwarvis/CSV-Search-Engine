@@ -1054,8 +1054,10 @@ id add
 id alertTitle
 id all
 id always
+id appBarLayout
 id async
 id auto
+id backToSearch
 id barrier
 id beginning
 id blocking
@@ -1088,7 +1090,7 @@ id design_navigation_view
 id dimensions
 id direct
 id disableHome
-id editText
+id editText2
 id edit_query
 id end
 id enterAlways
@@ -1152,6 +1154,7 @@ id pin
 id progress_circular
 id progress_horizontal
 id radio
+id resultsTextView
 id right
 id right_icon
 id right_side
@@ -1164,6 +1167,7 @@ id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
 id scrollable
+id searchButton
 id search_badge
 id search_bar
 id search_button
@@ -1206,8 +1210,6 @@ id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
-id textView
-id textView2
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
@@ -1354,6 +1356,7 @@ string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string app_name
 string appbar_scrolling_view_behavior
+string backToSearch
 string bottom_sheet_behavior
 string character_counter_content_description
 string character_counter_pattern
@@ -1367,6 +1370,7 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string resultsTextView
 string search_menu_title
 string start
 string status_bar_notification_info_overflow

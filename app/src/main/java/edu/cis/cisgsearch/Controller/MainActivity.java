@@ -19,8 +19,6 @@ import edu.cis.cisgsearch.View.BinaryTreeView;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText nameTextField;
-    String nameFromUser;
     BinaryTreeView treeView = null;
     private ArrayList<TARestProfile> TARPList;
 
@@ -35,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
         LinearLayout layout = (LinearLayout) findViewById(R.id.mainLayout);
-        nameTextField = findViewById(R.id.editText);
-
 
         TextView textView = (TextView) findViewById(R.id.messageView);
         treeView = new BinaryTreeView(this, textView);
@@ -50,10 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToNextScreen(View v)
     {
-        nameFromUser = nameTextField.getText().toString();
-
         Intent intent = new Intent(getBaseContext(), SecActivity.class);
-        intent.putExtra("name", nameFromUser);
         startActivity(intent);
     }
 
