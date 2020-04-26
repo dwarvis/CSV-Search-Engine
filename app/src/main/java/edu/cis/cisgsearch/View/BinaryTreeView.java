@@ -12,12 +12,14 @@ import java.util.Collections;
 import edu.cis.cisgsearch.Model.GoogleSearch.TARestProfile;
 import edu.cis.cisgsearch.Model.TConst;
 import edu.cis.cisgsearch.Model.Visualization.VizBinarySearchTree;
+import edu.cis.cisgsearch.Model.Visualization.VizBinarySearchTreeStr;
 
 public class BinaryTreeView extends View
 {
 
 
     private VizBinarySearchTree tree = null;
+    private VizBinarySearchTreeStr treeStr = null;
     private ArrayList<Double> searchSequence = null;
     private int searchPosition;
     private TextView textView;
@@ -42,21 +44,53 @@ public class BinaryTreeView extends View
         invalidate();
     }
 
-    public VizBinarySearchTree load(ArrayList<TARestProfile> TARPList)
+    public VizBinarySearchTreeStr load(ArrayList<TARestProfile> TARPList)
     {
-        tree = new VizBinarySearchTree();
-        ArrayList<Double> temp = new ArrayList<>();
+        treeStr = new VizBinarySearchTreeStr();
+        ArrayList<String> temp = new ArrayList<>();
         for (TARestProfile t : TARPList)
         {
-            double value = toASCII(t.getName());
-            temp.add(value);
-            tree.insert(value, t);
+            String name = t.getName();
+            temp.add(name);
+            treeStr.insert(name, t);
         }
-        searchSequence = temp;
+//        searchSequence = temp;
         searchPosition = 0;
-        invalidate();
+        return treeStr;
+    }
 
-        return tree;
+    public VizBinarySearchTreeStr loadBest(ArrayList<TARestProfile> TARPList)
+    {
+        //this load loads in only the top 10 best restaurants
+        treeStr = new VizBinarySearchTreeStr();
+        ArrayList<String> temp = new ArrayList<>();
+        for (TARestProfile t : TARPList)
+        {
+            if (Integer.parseInt(t.getRanking()) <= 10)
+            {
+                String name = t.getName();
+                temp.add(name);
+                treeStr.insert(name, t);
+            }
+        }
+//        searchSequence = temp;
+        searchPosition = 0;
+        return treeStr;
+    }
+
+    public ArrayList<String> loadCusine(ArrayList<TARestProfile> TARPList, String cuisine)
+    {
+        //this load loads in only a certain cuisine
+        ArrayList<String> temp = new ArrayList<>();
+        for (TARestProfile t : TARPList)
+        {
+            if (t.getCustyle().contains(cuisine))
+            {
+                String name = t.getName();
+                temp.add(name);
+            }
+        }
+        return temp;
     }
 
     private ArrayList<Double> generateRandomSequence(int size)

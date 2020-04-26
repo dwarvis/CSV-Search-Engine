@@ -7,10 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import edu.cis.cisgsearch.Model.GoogleSearch.TARestProfile;
 import edu.cis.cisgsearch.Model.GoogleSearch.Util;
 import edu.cis.cisgsearch.Model.Visualization.VizBinarySearchTree;
+import edu.cis.cisgsearch.Model.Visualization.VizBinarySearchTreeStr;
 import edu.cis.cisgsearch.Model.Visualization.VizTreeNode;
+import edu.cis.cisgsearch.Model.Visualization.VizTreeNodeStr;
 import edu.cis.cisgsearch.R;
 import edu.cis.cisgsearch.View.BinaryTreeView;
 
@@ -35,27 +39,22 @@ public class SecondaryActivity extends AppCompatActivity {
 
         String type = getIntent().getStringExtra("type");
 
-        VizBinarySearchTree tree = treeView.load(Util.readCSV(getBaseContext()));
+        ArrayList<TARestProfile> profList = Util.readCSV(getBaseContext());
 
 
         if (type.equals("search"))
         {
-            VizTreeNode tempNode = tree.searchPub(BinaryTreeView.toASCII(nameFromOtherView));
+            ArrayList<String> tree = treeView.loadCusine(profList, nameFromOtherView);
+            displayText = tree.toString();
+
+        }
+        else if (type.equals("find"))
+        {
+            VizBinarySearchTreeStr tree = treeView.load(profList);
+            VizTreeNodeStr tempNode = tree.searchPub(nameFromOtherView);
             if (tempNode != null)
             {
-                displayText = tempNode.getProf().getName();
-            }
-            else
-            {
-                displayText = "Couldn't find restaurant name.";
-            }
-        }
-
-        if (type.equals("find"))
-        {
-            TARestProfile temp = tree.find(BinaryTreeView.toASCII(nameFromOtherView));
-            if (temp != null)
-            {
+                TARestProfile temp = tempNode.getProf();
                 displayText = temp.getName() + ", " +
                         temp.getCity() + ", " +
                         temp.getCustyle() + ", " +
@@ -78,6 +77,7 @@ public class SecondaryActivity extends AppCompatActivity {
 
     public void goBackToSearch(View v)
     {
+        this.finish();
         Intent intent = new Intent(getBaseContext(), SecActivity.class);
         startActivity(intent);
     }

@@ -61,6 +61,7 @@ public class SecActivity extends AppCompatActivity
         Intent intent = new Intent(getBaseContext(), SecondaryActivity.class);
         //send over the results
         //"You create a new activity that lets the user search through the data that you have added to the binary tree."
+        nameFromUser = nameEditText.getText().toString();
         intent.putExtra("name", nameFromUser);
         intent.putExtra("type", "search");
         startActivity(intent);
@@ -72,6 +73,7 @@ public class SecActivity extends AppCompatActivity
         Intent intent = new Intent(getBaseContext(), SecondaryActivity.class);
         //send over the results
         //"You create a new activity that lets the user search through the data that you have added to the binary tree."
+        nameFromUser = nameEditText.getText().toString();
         intent.putExtra("name", nameFromUser);
         intent.putExtra("type", "find");
         startActivity(intent);

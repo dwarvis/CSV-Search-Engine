@@ -28,6 +28,19 @@ public class TARestProfile
         this.id = id;
     }
 
+    public TARestProfile()
+    {
+        this.name = "Information could not be found";
+        this.city = "Information could not be found";
+        this.custyle = "Information could not be found";
+        this.ranking = "Information could not be found";
+        this.rating = "Information could not be found";
+        this.pRange = "Information could not be found";
+        this.NOR = "Information could not be found";
+        this.reviews = "Information could not be found";
+        this.url = "Information could not be found";
+        this.id = "Information could not be found";
+    }
 
 
     public String getName()
